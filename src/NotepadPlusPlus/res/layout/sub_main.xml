@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rv_list_item"
+    android:layout_width="fill_parent"
+    android:layout_height="60dip">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="60dip"
+        android:paddingLeft="30dip"
+        android:paddingRight="30dip" >
+ 
+       <!-- android:paddingTop="20dip" 
+        android:background="@drawable/listviewbg" -->
+        <TextView
+            android:id="@+id/list_showtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:textColor="#6B6563" 
+            android:textSize="18dip" />
+
+        <TextView
+            android:id="@+id/list_showdate"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:textColor="#A5A6A5"
+            android:textSize="15dip" />
+
+        <CheckBox
+            android:id="@+id/ch_note_item"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/list_showtitle"
+            android:clickable="false"    android:gravity="center_vertical"
+            android:focusable="false"
+            android:focusableInTouchMode="false" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

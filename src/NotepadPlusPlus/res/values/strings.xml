@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Note Pad</string>
+    <string name="app_name">Note Pad</string>
+    <string name="add">Add</string>
+    <string name="edit_note">Edit Note</string>
+    <string name="edit_title">Edit Title</string>
+    <string name="revert">Revert</string>
+    <string name="delete_note">Delete Note</string>
+    <string name="delete_success">Delete Successed!</string>
+    <string name="menu_delete">Delete</string>
+    <string name="button_save">ok</string>
+    <string name="menu_add_title">Add Title</string>
+    <string name="delete_item_text">Delete</string>
+    <string name="cancel_delete_item_text">Cancel</string>
+    <string name="backup_data">BackupDatabase</string>
+    <string name="restore_data">RestoreDatabase</string>
+    <string name="export_to_sdcard">ExportToSDCard </string>
+    <string name="to_sd_card">To SD Card</string>
+    <string name="to_email">To Email</string>
+    <string name="change_font_size">Change font size</string>
+    <string name="new_folder">New Folder</string>
+    <string name="move_into_folder">Move into folder</string>
+    <string name="btn_save_folder">OK</string>
+    <string name="btn_cancel_save_folder">Cancel</string>
+    <string name="tv_new_folder">New folder</string>
+    <string name="edit_folder_title">Edit folder title</string>
+    <string name="set_password">Set password</string>
+    <string name="get_more">Get More</string>
+    <string name="about">About</string>
+    <string name="new_folder_title">New title</string>
+    <string name="move_out_of_folder">Move out Folder</string>
+    <string name="add_shortcut_home">Add shortcut Home</string>
+    <string name="set_alarm">Set Alarm</string>
+</resources>

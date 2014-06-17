@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/notes_background"
+    android:fitsSystemWindows="true"
+    android:gravity="center_vertical"
+    android:isScrollContainer="true"
+    android:orientation="vertical"
+    android:paddingTop="3dip" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="6.5dip"
+        android:layout_marginRight="6.5dip"
+        android:layout_marginTop="6dip"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/rv_header"
+            android:layout_width="match_parent"
+            android:layout_height="35dip"
+            android:layout_marginTop="6dip"
+            android:gravity="center_vertical"
+            android:background="#FFC0CB"
+            android:orientation="vertical" >
+  
+            <Button
+                android:id="@+id/btn_change_color"
+                android:layout_width="25dip"
+                android:layout_height="25dip"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="2dip"
+                android:layout_marginLeft="20dip"
+                android:background="@drawable/notes_btn_changecolors"
+                android:paddingRight="20dip" />
+            
+			<TextView 
+			    android:id="@+id/show_date"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:textSize="15dip"
+			    android:layout_centerVertical="true"
+			    android:layout_toLeftOf="@id/btn_change_color"
+			    android:text="08-09-2012"/>
+        </RelativeLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <com.edwin.NotepadPlusPlus.app.view.LineEditText
+                android:id="@+id/edit_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#FFEFEF"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:padding="3dp"
+                android:textSize="20dp" >
+
+                <requestFocus />
+            </com.edwin.NotepadPlusPlus.app.view.LineEditText>
+
+            <LinearLayout
+                android:id="@+id/lv_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dip"
+                android:background="@drawable/zhengwen_xuanyanse"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/btn_show_yellow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/zhengwen_xuanyanse_dangqian_bai" />
+
+                <Button
+                    android:id="@+id/btn_show_pink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/zhengwen_xuanyanse_dangqian_bai" />
+
+                <Button
+                    android:id="@+id/btn_show_blue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/zhengwen_xuanyanse_dangqian_bai" />
+
+                <Button
+                    android:id="@+id/btn_show_green"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/zhengwen_xuanyanse_dangqian_bai" />
+
+                <Button
+                    android:id="@+id/btn_show_gray"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/zhengwen_xuanyanse_dangqian_bai" />
+            </LinearLayout>
+
+             <SeekBar
+                android:id="@+id/seekbar_fontsize"
+                android:layout_width="250dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:padding="20dip"
+                android:background="#55000000"
+                android:max="50"/>
+
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="10"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/tv_footer"
+            android:layout_width="match_parent"
+            android:layout_height="30dip"
+            android:background="@drawable/notes_bg_yellow"/>
+    </LinearLayout>
+
+</LinearLayout>

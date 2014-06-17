@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/notes_background"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="20dip"
+        android:layout_marginRight="20dip"
+        android:background="@drawable/xiaomi" />
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/beijing_toubu" >
+
+        <TextView
+            android:id="@+id/list_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="10dip"
+            android:paddingLeft="22dip"
+            android:paddingTop="8dip"
+            android:singleLine="true"
+            android:text="@string/app_name"
+            android:textColor="#E7C7A5"
+            android:textSize="25dip" />
+
+        <Button
+            android:id="@+id/button_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="10dip"
+            android:background="@drawable/tianjia"
+            android:paddingRight="3dip" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/header"
+        android:orientation="vertical" >
+
+        <com.edwin.NotepadPlusPlus.app.view.DragListView
+            android:id="@+id/notelist"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dip"
+            android:layout_weight="1"
+            android:cacheColorHint="#00000000"
+            android:divider="@null"
+            android:fadingEdge="none"
+            android:focusable="false"
+            android:listSelector="#00000000" />
+
+        <LinearLayout
+            android:id="@+id/lv_delete_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/anniubeijing"
+            android:orientation="horizontal"
+            android:paddingLeft="5dip"
+            android:paddingRight="5dip" >
+
+            <Button
+                android:id="@+id/btn_delete_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="2dip"
+                android:layout_weight="1"
+                android:background="@drawable/shanchubeijing"
+                android:text="@string/delete_item_text"
+                android:textSize="20dip" />
+
+            <Button
+                android:id="@+id/btn_cancel_delete_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="2dip"
+                android:layout_weight="1"
+                android:background="@drawable/quxiaobeijing"
+                android:text="@string/cancel_delete_item_text"
+                android:textSize="20dip" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lv_newfolder_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@drawable/fenzuditu"
+            android:orientation="vertical"
+            android:paddingLeft="5dip"
+            android:paddingRight="5dip" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dip"
+                android:gravity="center"
+                android:text="@string/tv_new_folder"
+                android:textSize="30dip" />
+
+            <EditText
+                android:id="@+id/et_newfolder_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="15dip"
+                android:layout_marginTop="55dip"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="New folder name" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:orientation="horizontal"
+                android:paddingTop="12dip" >
+
+                <Button
+                    android:id="@+id/btn_save_folder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="2dip"
+                    android:background="@drawable/quedingdi"
+                    android:text="@string/btn_save_folder"
+                    android:textSize="20dip" />
+
+                <Button
+                    android:id="@+id/btn_cancel_folder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="2dip"
+                    android:background="@drawable/quxiaobeijing"
+                    android:text="@string/btn_cancel_save_folder"
+                    android:textSize="20dip" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout> <!-- android:listSelector="#00000000" -->

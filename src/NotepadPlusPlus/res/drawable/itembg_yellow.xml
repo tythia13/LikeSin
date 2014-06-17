@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+<!--     When there is no focus show background.--> 
+    <item 
+        android:drawable="@drawable/biaoqian_huang" 
+        android:state_window_focused="false"/>
+
+    <!-- No touching model: observe focus and click it. Show background -->
+    <item 
+        android:drawable="@drawable/biaoqian_huaguo" 
+        android:state_focused="true" 
+        android:state_pressed="true"/>
+
+    <!-- Touching model: click it. Show background. -->
+    <item 
+        android:drawable="@drawable/biaoqian_huaguo" 
+        android:state_focused="false" 
+        android:state_pressed="true"/>
+    
+    <!-- When the item is selected show background. -->
+    <item 
+        android:drawable="@drawable/biaoqian_huaguo" 
+        android:state_selected="true"/>
+
+    <!-- When the item get focus, Show background. -->
+    <item 
+        android:drawable="@drawable/biaoqian_huaguo" 
+        android:state_focused="true"/>
+
+</selector>
