@@ -1,6 +1,6 @@
 package com.edwin.likesina;
 
-import com.edwin.likesina.home.activity.HomeMenuActivity;
+import com.edwin.likesina.app.home.activity.HomeMenuActivity;
 
 import android.app.Activity;
 import android.content.Intent;

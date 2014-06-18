@@ -1,4 +1,4 @@
-package com.edwin.likesina.home.fragment;
+package com.edwin.likesina.app.home.fragment;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -9,10 +9,11 @@ import android.widget.TextView;
 
 import com.edwin.likesina.R;
 
-public class HomeFragment extends BaseFragment
+public class DiscoverFragment extends BaseHomeFragment
 {
+
     int mNum;
-    String TAG = HomeFragment.class.getSimpleName();
+    String TAG = DiscoverFragment.class.getSimpleName();
 
     /**
      * When creating, retrieve this instance's number from its arguments.
@@ -22,7 +23,7 @@ public class HomeFragment extends BaseFragment
     {
         super.onCreate(savedInstanceState);
         Log.i(TAG, "onCreate");
-        mNum = getArguments() != null ? getArguments().getInt("num") : 0;
+        mNum = getArguments() != null ? getArguments().getInt("num") : 1;
     }
 
     /**

@@ -1,23 +1,23 @@
-package com.edwin.likesina.home.activity;
+package com.edwin.likesina.app.home.activity;
 
-import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 
 import com.edwin.likesina.R;
-import com.edwin.likesina.home.fragment.BaseFragment;
-import com.edwin.likesina.home.fragment.DiscoverFragment;
-import com.edwin.likesina.home.fragment.HomeFragment;
-import com.edwin.likesina.home.fragment.MeFragment;
-import com.edwin.likesina.home.fragment.MessageFragment;
-import com.edwin.likesina.home.fragment.MoreFragment;
+import com.edwin.likesina.app.home.fragment.BaseHomeFragment;
+import com.edwin.likesina.app.home.fragment.DiscoverFragment;
+import com.edwin.likesina.app.home.fragment.HomeFragment;
+import com.edwin.likesina.app.home.fragment.MeFragment;
+import com.edwin.likesina.app.home.fragment.MessageFragment;
+import com.edwin.likesina.app.home.fragment.MoreFragment;
+import com.edwin.likesina.common.activity.BaseActivity;
 
-public class HomeMenuActivity extends FragmentActivity implements OnClickListener
+public class HomeMenuActivity extends BaseActivity implements OnClickListener
 {
-    private BaseFragment mCurrentFragment;
+    private BaseHomeFragment mCurrentFragment;
     private LinearLayout mLinearLayoutHome, mLinearLayoutMessage, mLinearLayoutDiscover, mLinearLayoutMe, mLinearLayoutMore;
 
     @Override
@@ -26,8 +26,8 @@ public class HomeMenuActivity extends FragmentActivity implements OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_menu);
         initView();
-        BaseFragment fragmentHome = new HomeFragment();
-        getFragmentManager().beginTransaction()
+        BaseHomeFragment fragmentHome = new HomeFragment();
+        getSupportFragmentManager().beginTransaction()
                 .replace(R.id.home_menu_linearlayout_content, fragmentHome, HomeFragment.class.getSimpleName()).commit();
         mCurrentFragment = fragmentHome;
     }
@@ -48,18 +48,18 @@ public class HomeMenuActivity extends FragmentActivity implements OnClickListene
 
     private void changeFragment(int tabIndex, String fragmentTag)
     {
-        Fragment f = getFragmentManager().findFragmentByTag(fragmentTag);
+        Fragment f = getSupportFragmentManager().findFragmentByTag(fragmentTag);
         if (f != null)
         {
             mCurrentFragment.onFragmentPause(true);
-            getFragmentManager().beginTransaction().hide(mCurrentFragment).commit();
-            mCurrentFragment = (BaseFragment)f;
+            getSupportFragmentManager().beginTransaction().hide(mCurrentFragment).commit();
+            mCurrentFragment = (BaseHomeFragment)f;
             mCurrentFragment.onFragmentResume(true);
-            getFragmentManager().beginTransaction().show(mCurrentFragment).commit();
+            getSupportFragmentManager().beginTransaction().show(mCurrentFragment).commit();
         }
         else
         {
-            BaseFragment basefragment = null;
+            BaseHomeFragment basefragment = null;
             switch (tabIndex)
             {
                 case 0:
@@ -81,10 +81,11 @@ public class HomeMenuActivity extends FragmentActivity implements OnClickListene
             if (basefragment != null)
             {
                 mCurrentFragment.onFragmentPause(true);
-                getFragmentManager().beginTransaction().hide(mCurrentFragment).commit();
+                getSupportFragmentManager().beginTransaction().hide(mCurrentFragment).commit();
                 mCurrentFragment = basefragment;
-                getFragmentManager().beginTransaction().add(R.id.home_menu_linearlayout_content, mCurrentFragment, fragmentTag).commit();
-                getFragmentManager().beginTransaction().show(mCurrentFragment).commit();
+                getSupportFragmentManager().beginTransaction().add(R.id.home_menu_linearlayout_content, mCurrentFragment, fragmentTag)
+                        .commit();
+                getSupportFragmentManager().beginTransaction().show(mCurrentFragment).commit();
             }
         }
     }

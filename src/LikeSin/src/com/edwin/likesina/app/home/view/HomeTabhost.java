@@ -1,4 +1,4 @@
-package com.edwin.likesina.home.view;
+package com.edwin.likesina.app.home.view;
 
 import android.content.Context;
 import android.util.AttributeSet;

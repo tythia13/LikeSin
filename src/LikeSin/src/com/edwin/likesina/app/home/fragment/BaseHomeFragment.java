@@ -1,8 +1,8 @@
-package com.edwin.likesina.home.fragment;
+package com.edwin.likesina.app.home.fragment;
 
-import android.app.Fragment;
+import com.edwin.likesina.common.fragment.BaseFragment;
 
-public class BaseFragment extends Fragment
+public class BaseHomeFragment extends BaseFragment
 {
     public void onFragmentResume(boolean isChangeTab)
     {

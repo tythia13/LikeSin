@@ -1,4 +1,4 @@
-package com.edwin.likesina.home.fragment;
+package com.edwin.likesina.app.home.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,9 +9,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.edwin.likesina.R;
-import com.edwin.likesina.v4.MainActivity;
+import com.edwin.likesina.app.more.activity.SettingActivity;
 
-public class MoreFragment extends BaseFragment
+public class MoreFragment extends BaseHomeFragment
 {
 
     int mNum;
@@ -45,7 +45,7 @@ public class MoreFragment extends BaseFragment
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent(getActivity(), MainActivity.class);
+                Intent intent = new Intent(getActivity(), SettingActivity.class);
                 getActivity().startActivity(intent);
             }
         });
