@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Hello World</title>
+<link href="css.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="jquery-1.9.1.js"></script>
+<script>
+    $(document).ready(function(){
+
+    	$('#strDetail').on('keypress', function(event){
+    	   var keyCode = event.keyCode || event.which || window.event.keyCode;
+	       if (keyCode === 8) {
+	         return true;
+	       }
+	       var keyChar = String.fromCharCode(keyCode);
+	       var regx = /^[0-9-+() ]+$/;
+	       if (regx.test(keyChar)) {
+	         return true;
+	       } else {
+	         return false;
+	       }
+    	});
+
+
+    	$('#strDetail').on('change', function(event){
+	      var targetValue = event.currentTarget.value;
+	      var regx = /^[0-9-+() ]+$/;
+	      if (!regx.test(targetValue)) {
+	        event.currentTarget.value = "";
+	      }
+    	});
+
+
+    	$('#submit').on('click', function(e){
+    		var str = null;// $('#strDetail').val().split(' ');
+			if (str == null )
+			{
+			   alert('str is null');
+			   return;
+			}
+    		var html = '<br />';
+			alert(str.length);
+    		for(var i=0; i<str.length; i++){
+				if (str[i] !==' ' && str[i] !== ''){
+					html = '<div>' + html + str[i] + '</div><br />' ;
+				}
+				else{
+					alert(i);
+				}
+    		}
+    		$('#strResult').html(html);
+    	});
+
+    	$('#button').on('click', function(e){
+    		var str =  $('#textStr').text().split(' ');
+    		var html = '<br />';
+    		for(var i=0; i<str.length; i++){
+    			   html = '<div>' + html + str[i] + '</div><br />' ;
+    		}
+    		$('#strResult').html(html);
+    	});
+    })
+   
+</script>
+</head>
+
+<body>
+	<header ><h1 >Hello</h1></header>
+	<div id="container" class="container">
+
+		<div><h1>One</h1><span id="textStr">4520983 4524 23452 132432</span><input type="button" id='button' value="Click" /></div>
+		<br />
+
+		<div id="inputStr">
+			<h1>Two</h1>
+			<input type="text" placeholder="Tel Phone Number : 只能输数字和空格-+()"  id='strDetail' style='width:500px;'/> <input type="submit" id='submit' value="Submit" />
+		</div>
+		<br />
+
+		<div id="strResult" style='border: 1px solid red;min-height:100px;'></div>
+	</div>
+
+	<footer></footer>
+</body>
+</html>
