@@ -46,7 +46,7 @@ public class SplashActivity extends Activity
      */
     private void test(String str)
     {
-        Pattern datePatt = Pattern.compile("[hv]{2}[m]{1}[0-9]{1}[m]{1}[0-9]{3}[h]{0,1}[0-9]{0,3}[q]{1}[a-z]{3}");
+        Pattern datePatt = Pattern.compile("[hv]{2}[0-9]{1}[m]{1}[0-9]{1}[w]{0,1}[0-9]{0,3}[h]{0,1}[0-9]{0,3}[q]{1}[a-z]{3}");
         Matcher m = datePatt.matcher(str);
         if (m.matches())
         {
