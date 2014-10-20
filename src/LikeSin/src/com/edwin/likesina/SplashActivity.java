@@ -1,5 +1,8 @@
 package com.edwin.likesina;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -37,41 +40,51 @@ public class SplashActivity extends Activity
 
     /**
      * decode the key value from a giving unique string
-     * @author edwin li  2014-10-20
+     * 
+     * @author edwin li 2014-10-20
      * @param str
      */
     private void test(String str)
     {
-        String str1 = str.replace("hv", "");
-        int w = str1.indexOf("w");
-        int h = str1.indexOf("h");
-        int q = str1.indexOf("q");
-        if (w == -1)
+        Pattern datePatt = Pattern.compile("[hv]{2}[m]{1}[0-9]{1}[m]{1}[0-9]{3}[h]{0,1}[0-9]{0,3}[q]{1}[a-z]{3}");
+        Matcher m = datePatt.matcher(str);
+        if (m.matches())
         {
-            if (h > q || h == -1)
+            String str1 = str.replace("hv", "");
+            int w = str1.indexOf("w");
+            int h = str1.indexOf("h");
+            int q = str1.indexOf("q");
+            if (w == -1)
             {
-                Log.e("splsh", "use default w, h");
+                if (h > q || h == -1)
+                {
+                    Log.e("splsh", "use default w, h");
+                }
+                else
+                {
+                    String height = str1.substring(h + 1, q);
+                    Log.e("splsh", "height is:" + height);
+                }
             }
             else
             {
-                String height = str1.substring(h + 1, q);
-                Log.e("splsh", "height is:" + height);
+                if (h > q || h == -1)
+                {
+                    String width = str1.substring(w + 1, q);
+                    Log.e("splsh", "width is:" + width);
+                }
+                else
+                {
+                    String height = str1.substring(w + 1, h);
+                    Log.e("splsh", "height is:" + height);
+                    String width = str1.substring(h + 1, q);
+                    Log.e("splsh", "width is:" + width);
+                }
             }
         }
         else
         {
-            if (h > q || h == -1)
-            {
-                String width = str1.substring(w + 1, q);
-                Log.e("splsh", "width is:" + width);
-            }
-            else
-            {
-                String height = str1.substring(w + 1, h);
-                Log.e("splsh", "height is:" + height);
-                String width = str1.substring(h + 1, q);
-                Log.e("splsh", "width is:" + width);
-            }
+            Log.e("edwin", "zifuchuan you wenti");
         }
     }
 }
