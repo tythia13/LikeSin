@@ -15,14 +15,63 @@ public class SplashActivity extends Activity
         super.onCreate(savedInstanceState);
         // Intent intent = new Intent(this, MainActivity.class);
         String a = "test";
-        Log.e("edwin", "a="+a);
+        Log.e("edwin", "a=" + a);
         a = "treat";
-        Log.e("edwin", "a="+a);
-        String b = a.substring(0,2);
-        Log.e("edwin", "b="+b);
-        
+        Log.e("edwin", "a=" + a);
+        String b = a.substring(0, 2);
+        Log.e("edwin", "b=" + b);
+        test("hv5m5w540h540qhip");
+        Log.e("edwin", "end");
+        test("hv5m5w320qhip");
+        Log.e("edwin", "end");
+        test("hv5m5h320qhip");
+        Log.e("edwin", "end");
+        test("hv5m5w320qmid");
+        Log.e("edwin", "end");
+        test("hv5m5qhip");
+        Log.e("edwin", "end");
         Intent intent = new Intent(this, HomeMenuActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    /**
+     * decode the key value from a giving unique string
+     * @author edwin li  2014-10-20
+     * @param str
+     */
+    private void test(String str)
+    {
+        String str1 = str.replace("hv", "");
+        int w = str1.indexOf("w");
+        int h = str1.indexOf("h");
+        int q = str1.indexOf("q");
+        if (w == -1)
+        {
+            if (h > q || h == -1)
+            {
+                Log.e("splsh", "use default w, h");
+            }
+            else
+            {
+                String height = str1.substring(h + 1, q);
+                Log.e("splsh", "height is:" + height);
+            }
+        }
+        else
+        {
+            if (h > q || h == -1)
+            {
+                String width = str1.substring(w + 1, q);
+                Log.e("splsh", "width is:" + width);
+            }
+            else
+            {
+                String height = str1.substring(w + 1, h);
+                Log.e("splsh", "height is:" + height);
+                String width = str1.substring(h + 1, q);
+                Log.e("splsh", "width is:" + width);
+            }
+        }
     }
 }
