@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest android:versionCode="16" android:versionName="2.2" package="com.chanyouji.android"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:glEsVersion="0x20000" android:required="true" />
+    <application android:theme="@style/Theme.Chanyouji" android:label="@string/app_name" android:icon="@drawable/icon_chanyouji_logo" android:name="com.chanyouji.android.ChanYouJiApplication" android:logo="@drawable/logo_b" android:hardwareAccelerated="true" android:largeHeap="true">
+        <meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="@string/google_api_key_release" />
+        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+        <meta-data android:name="com.aviary.android.feather.v1.API_KEY" android:value="@string/aviary_app_key" />
+        <meta-data android:name="UMENG_APPKEY" android:value="@string/umeng_appkey" />
+        <meta-data android:name="UMENG_MESSAGE_SECRET" android:value="@string/umeng_message_secret" />
+        <meta-data android:name="UMENG_CHANNEL" android:value="@string/channel_letter" />
+        <receiver android:name="com.umeng.message.NotificationProxyBroadcastReceiver" android:exported="true" />
+        <receiver android:name="com.umeng.message.RegistrationReceiver">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.umeng.message.UmengBroadcastReceiver">
+            <intent-filter>
+                <action android:name="org.agoo.android.intent.action.RECEIVE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.chanyouji.android.intent.action.COMMAND" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="org.agoo.android.intent.action.RE_ELECTION_V2" />
+            </intent-filter>
+        </receiver>
+        <service android:name="com.umeng.message.UmengService" android:exported="true" android:process=":umengService_v1">
+            <intent-filter>
+                <action android:name="com.chanyouji.android.intent.action.START" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.chanyouji.android.intent.action.COCKROACH" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="org.agoo.android.intent.action.PING" />
+            </intent-filter>
+        </service>
+        <service android:name="org.android.agoo.service.ElectionService" android:exported="true" android:process=":umengService_v1">
+            <intent-filter>
+                <action android:name="org.agoo.android.intent.action.ELECTION_V2" />
+            </intent-filter>
+        </service>
+        <service android:name="com.umeng.message.UmengIntentService" />
+        <service android:name="com.umeng.common.net.DownloadingService" android:process=":DownloadingService" />
+        <service android:name="com.chanyouji.android.UmengMessageIntentService" />
+        <activity android:theme="@*android:style/Theme.Translucent.NoTitleBar" android:name="com.umeng.update.UpdateDialogActivity" android:screenOrientation="portrait" />
+        <activity android:theme="@style/Theme.Chanyouji.NoActionBar" android:name="com.chanyouji.android.SplashActivity" android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:label="@string/app_name" android:name="com.chanyouji.android.MainActivity" android:launchMode="singleTask" android:screenOrientation="portrait" />
+        <activity android:label="@string/edit_trip_title" android:name="com.chanyouji.android.TripEditActivity" android:screenOrientation="portrait" />
+        <activity android:label="@string/media_picker_select_bucket_title" android:name="com.chanyouji.android.picker.PhotoBucketActivity" android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.chanyouji.ACTION_PICK_PHOTO" />
+                <action android:name="com.chanyouji.ACTION_MULTI_PICK_PHOTO" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:label="@string/media_picker_select_content_title" android:name="com.chanyouji.android.picker.MediaPickerActivity" android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.chanyouji.ACTION_PICK_VIDEO" />
+                <action android:name="com.chanyouji.ACTION_MULTI_PICK_VIDEO" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:label="@string/create_trip_title" android:name="com.chanyouji.android.TripCreateActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateVisible|adjustResize" />
+        <activity android:label="@string/edit_place_title" android:name="com.chanyouji.android.TripEditPlaceActivity" android:screenOrientation="portrait" />
+        <activity android:label="@string/trip_sort_place_title" android:name="com.chanyouji.android.TripSortPlaceActivity" android:screenOrientation="portrait" />
+        <activity android:label="@string/association_photo_title" android:name="com.chanyouji.android.TripPhotoPlaceAssociationActivity" android:screenOrientation="portrait" />
+        <activity android:label="@string/trip_cover_title" android:name="com.chanyouji.android.TripCoverActivity" android:screenOrientation="portrait" />
+        <activity android:label="@string/attraction_comment_title" android:name="com.chanyouji.android.TripAttractionCommentActivity" android:screenOrientation="portrait" />
+        <activity android:label="@string/create_node_title" android:name="com.chanyouji.android.TripCreateNodeActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustPan" />
+        <activity android:label="@string/create_node_edit_mode_title" android:name="com.chanyouji.android.TripCreateNodeLocationActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustPan" />
+        <activity android:theme="@style/Theme.Chanyouji.NoActionBar.Fullscreen" android:label="@string/title_activity_trip_read" android:name="com.chanyouji.android.TripReadActivity" android:windowSoftInputMode="adjustResize" />
+        <activity android:label="@string/login_register_title" android:name="com.chanyouji.android.LoginActivity" android:screenOrientation="portrait" />
+        <activity android:theme="@style/FullscreenTheme" android:label="@string/trip_media_edit_title" android:name="com.chanyouji.android.TripPhotoEditActivity" android:screenOrientation="portrait" />
+        <activity android:theme="@*android:style/Theme.Holo.Light.Dialog.NoActionBar" android:name="com.chanyouji.android.FloatInputActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize" />
+        <activity android:name="com.chanyouji.android.destination.DestinationCountryActivity" android:exported="true" android:screenOrientation="portrait" android:configChanges="orientation" android:windowSoftInputMode="adjustNothing">
+            <intent-filter>
+                <action android:name="com.chanyouji.android.OPEN_DESTINATION" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="chanyoujidestinations" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.chanyouji.android.destination.DestinationTipsActivity" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation|screenSize" android:windowSoftInputMode="adjustResize" />
+        <activity android:name="com.chanyouji.android.destination.DestinationAlbumsActivity" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation|screenSize" android:windowSoftInputMode="adjustResize" />
+        <activity android:name="com.chanyouji.android..destination.Destination" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation|screenSize" android:windowSoftInputMode="adjustResize" />
+        <activity android:name="com.chanyouji.android.destination.DestinationPOIActivity" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation|screenSize" android:windowSoftInputMode="adjustResize" />
+        <activity android:name="com.chanyouji.android.destination.DestinationAllPOIActivity" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation|screenSize" android:windowSoftInputMode="adjustResize" />
+        <activity android:theme="@style/Theme.Chanyouji.NoActionBar.Fullscreen" android:name="com.chanyouji.android.destination.DestinationNoteImageActitivty" android:windowSoftInputMode="adjustResize" />
+        <activity android:name="com.chanyouji.android.destination.DestinationMapActivity" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation|screenSize" android:windowSoftInputMode="adjustResize" />
+        <activity android:name="com.chanyouji.android.destination.DestinationPlanListActivity" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation|screenSize" android:windowSoftInputMode="adjustResize" />
+        <activity android:theme="@style/Theme.Chanyouji.BlackOverlay" android:name="com.chanyouji.android.destination.PlanActivity" android:screenOrientation="portrait" android:configChanges="orientation" android:windowSoftInputMode="adjustNothing" />
+        <activity android:name="com.chanyouji.android.destination.DestinationPlanMapActivity" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation|screenSize" android:windowSoftInputMode="adjustResize" />
+        <activity android:name="com.chanyouji.android.destination.DestinationWaterFallActivity" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation|screenSize" android:windowSoftInputMode="adjustResize" />
+        <activity android:theme="@style/Theme.Chanyouji.BlackOverlay" android:name="com.chanyouji.android.destination.POIDetailActivity" android:exported="true" android:screenOrientation="portrait" android:configChanges="orientation" android:windowSoftInputMode="adjustNothing">
+            <intent-filter>
+                <action android:name="com.chanyouji.android.OPEN_ATTRACTION" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="chanyoujiattractions" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.chanyouji.android.destination.DestinationAttractionTripActivity" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation|screenSize" android:windowSoftInputMode="adjustResize" />
+        <activity android:name="com.chanyouji.android.destination.DestinationTripNoteActivity" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation|screenSize" android:windowSoftInputMode="adjustResize" />
+        <activity android:theme="@*android:style/Theme.NoDisplay" android:name="com.chanyouji.android.wxapi.WXEntryActivity" android:exported="true" android:launchMode="singleTop" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation|screenSize" android:windowSoftInputMode="adjustResize" />
+        <activity android:theme="@style/Theme.Chanyouji.BlackOverlay" android:name="com.chanyouji.android.destination.ArticleActivity" android:exported="true" android:screenOrientation="portrait" android:configChanges="orientation" android:windowSoftInputMode="adjustNothing">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="chanyoujiarticles" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.chanyouji.android.destination.DestinationAddTipActivity" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation|screenSize" android:windowSoftInputMode="adjustResize" />
+        <activity android:name="com.chanyouji.android.destination.DestinationArticleListActivity" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation|screenSize" android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity android:name="com.chanyouji.android.destination.DestnationArticleCommentActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity android:name="com.tencent.tauth.AuthActivity" android:launchMode="singleTask" android:screenOrientation="portrait" android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="tencent100277927" />
+            </intent-filter>
+        </activity>
+        <activity android:theme="@*android:style/Theme.Translucent.NoTitleBar" android:name="com.tencent.connect.common.AssistActivity" android:screenOrientation="portrait" />
+        <activity android:name="com.chanyouji.android.destination.DestinationDetailTripActivity" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation|screenSize" android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity android:label="@string/trip_note_title" android:name="com.chanyouji.android.TripNoteActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize" />
+        <activity android:theme="@style/Theme.Chanyouji.Transparent" android:label="@string/sync_title" android:name="com.chanyouji.android.TripSyncActivity" android:screenOrientation="portrait" />
+        <activity android:label="@string/sync_title" android:name="com.chanyouji.android.TripSyncCalActivity" android:screenOrientation="portrait" />
+        <activity android:label="@string/sync_title" android:name="com.chanyouji.android.TripSyncInfoActivity" android:screenOrientation="portrait" />
+        <activity android:label="@string/sync_title" android:name="com.chanyouji.android.TripSyncResultActivity" android:screenOrientation="portrait" />
+        <activity android:label="@string/category_topic" android:name="com.chanyouji.android.TripListInTopicActivity" android:screenOrientation="portrait" />
+        <activity android:label="@string/settings_title" android:name="com.chanyouji.android.SettingsActivity" android:screenOrientation="portrait" />
+        <activity android:label="@string/settings_msg_push_title" android:name="com.chanyouji.android.SettingsMsgPushActivity" android:screenOrientation="portrait" />
+        <activity android:name="com.chanyouji.android.UserActivity" android:screenOrientation="portrait" />
+        <activity android:label="@string/funs_follows_title" android:name="com.chanyouji.android.FansFollowsActivity" android:screenOrientation="portrait" />
+        <activity android:label="@string/reply" android:name="com.chanyouji.android.TripCommentActivity" android:screenOrientation="portrait" />
+        <activity android:label="@string/login_sns" android:name="com.chanyouji.android.LoginSNSActivity" android:screenOrientation="portrait" />
+        <activity android:label="@string/settings_connect_sns_title" android:name="com.chanyouji.android.SettingsConnectSNSActivity" android:screenOrientation="portrait" />
+        <activity android:name="com.chanyouji.android.ShareActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateVisible|adjustResize" />
+        <activity android:label="@string/settings_suggestion" android:name="com.chanyouji.android.SettingsSuggestionsActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateVisible" />
+        <activity android:label="@string/settings_authorization_title" android:name="com.chanyouji.android.SettingsAuthorizationActivity" android:screenOrientation="portrait" />
+        <activity android:theme="@style/AviaryTheme" android:name="com.aviary.android.feather.FeatherActivity" android:process=":aviarysdk" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation|screenSize" android:hardwareAccelerated="true" android:largeHeap="true" />
+        <activity android:theme="@style/AviaryTheme.Dialog" android:name="com.aviary.android.feather.AlertActivity" android:launchMode="standard" android:screenOrientation="portrait" android:noHistory="true">
+            <intent-filter>
+                <action android:name="aviary.intent.action.ALERT" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <service android:name="com.aviary.android.feather.cds.AviaryCdsService" android:exported="false" android:process=":aviarycds">
+            <intent-filter>
+                <action android:name="aviary.intent.action.CDS_DOWNLOAD_START" />
+                <action android:name="aviary.intent.action.CDS_RESTORE_USER_ITEMS" />
+            </intent-filter>
+        </service>
+        <provider android:name="com.aviary.android.feather.cds.AviaryCdsProvider" android:exported="false" android:process=":aviarycds" android:authorities="com.chanyouji.android.AviaryCdsProvider" android:syncable="true" />
+        <receiver android:name="com.aviary.android.feather.cds.AviaryCdsReceiver" android:process=":aviarycds">
+            <intent-filter>
+                <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />
+            </intent-filter>
+        </receiver>
+        <provider android:name="com.aviary.android.feather.library.providers.FeatherContentProvider" android:exported="false" android:process=":standalone" android:authorities="com.chanyouji.android.HiResProvider" />
+        <activity android:label="@string/user_detail_title" android:name="com.chanyouji.android.UserDetailActivity" android:screenOrientation="portrait" />
+        <activity android:name="com.chanyouji.android.SearchActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity android:theme="@style/Theme.Chanyouji.BlackOverlay" android:label="@string/edit_trip_menu_play" android:name="com.chanyouji.android.TripVerticalTrainFlowActivity" android:exported="true" android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.chanyouji.android.OPEN_TRIP" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="chanyoujitrips" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.chanyouji.android.NewMainActivity" android:exported="true" android:launchMode="singleTask" android:screenOrientation="portrait" />
+        <activity android:label="@string/user_home_title" android:name="com.chanyouji.android.MyHomeActivity" android:screenOrientation="portrait" android:parentActivityName="com.chanyouji.android.NewMainActivity">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.chanyouji.android.NewMainActivity" />
+        </activity>
+        <activity android:name="com.chanyouji.android.CategoryFilterActivity" android:screenOrientation="portrait" />
+        <activity android:name="com.chanyouji.android.DestinationTripsActivity" android:screenOrientation="portrait" />
+        <activity android:theme="@style/Theme.Chanyouji.NoActionBar.Fullscreen" android:name="com.chanyouji.android.TripMediaGalleryActivity" />
+        <activity android:label="@string/comment" android:name="com.chanyouji.android.CommentActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity android:label="@string/read_trip_map_title" android:name="com.chanyouji.android.TripMapActivity" android:screenOrientation="portrait" />
+        <activity android:theme="@style/Theme.Chanyouji.NoActionBar.Fullscreen" android:name="com.chanyouji.android.GeneralMediaActivity" />
+        <activity android:label="@string/user_home_favorites_title" android:name="com.chanyouji.android.MyFavoriteActivity" android:screenOrientation="portrait" />
+        <activity android:label="@string/user_profile_title" android:name="com.chanyouji.android.UserProfileActivity" android:screenOrientation="portrait" />
+        <activity android:label="@string/crop" android:name="com.chanyouji.android.CropImageActivity" android:screenOrientation="portrait" />
+        <service android:name="com.chanyouji.android.offline.download.core.ChanYouJiInternalAssistService" />
+        <activity android:name="com.chanyouji.android.MyOfflineBrowsingActivity" android:screenOrientation="portrait" />
+        <activity android:label="@string/menu_msg_center" android:name="com.chanyouji.android.MessageCenterActivity" android:screenOrientation="portrait" />
+        <activity android:name="com.chanyouji.android.ConversationActivity" android:screenOrientation="portrait" />
+        <activity android:label="@string/trip_settings_title" android:name="com.chanyouji.android.TripSettingsActivity" android:screenOrientation="portrait" />
+        <activity android:theme="@style/Theme.Chanyouji.BlackOverlay.Picker" android:name="com.chanyouji.android.picker.PhotoViewActivity" android:screenOrientation="portrait" />
+        <activity android:label="@string/register_profile_title" android:name="com.chanyouji.android.RegisterProfileActivity" android:screenOrientation="portrait" />
+        <activity android:label="@string/user_home_more_map" android:name="com.chanyouji.android.UserMapActivity" android:screenOrientation="portrait" />
+        <activity android:theme="@style/Theme.Chanyouji.Transparent" android:name="com.chanyouji.android.RecommandPictorialActivity" android:screenOrientation="portrait" />
+    </application>
+</manifest>

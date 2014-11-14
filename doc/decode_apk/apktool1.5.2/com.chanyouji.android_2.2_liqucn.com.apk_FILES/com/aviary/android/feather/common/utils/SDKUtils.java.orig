@@ -1,0 +1,114 @@
+package com.aviary.android.feather.common.utils;
+
+import java.io.InputStream;
+import java.util.Scanner;
+
+import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.os.Bundle;
+
+public class SDKUtils {
+
+	/** Aviary SDK Version */
+	public static final String SDK_VERSION = "3.1.1";
+
+	/** Aviary current SDK Version int */
+<<<<<<< HEAD
+	public static final int SDK_INT = 230;
+=======
+	public static final int SDK_INT = 227;
+>>>>>>> beta
+	
+	/** First version with the new CDS system */
+	public static final int IAP_RELEASE_VERSION = 212;
+
+	public static final String MISSING_APIKEY_MESSAGE = "API-KEY is missing. Did you forget to add the <meta-data android:name='com.aviary.android.feather.v1.API_KEY' android:value='your-api-key' /> inside the <application /> tag of your AndroidManifest.xml file?";
+
+	/**
+	 * Return the Application specific API-KEY<br />
+	 * Note that you cannot call this method from the UI thread.<br />
+	 * From version 3.0.2 there's a new way to pass the Aviary api-key, using
+	 * the AndroidManifest's metadata section. Example:<br />
+	 * 
+	 * <pre>
+	 * &lt;meta-data 
+	 * 	android:name="com.aviary.android.feather.v1.API_KEY" 
+	 * 	android:value="xxxxxxxxxx" /&gt;
+	 * </pre>
+	 * 
+	 * @return
+	 */
+	public static String getApiKey( final Context context ) {
+		return ApiKeyReader.getApiKey( context );
+	}
+	
+	public static String[] getKeys( Context context ) {
+		return ApiKeyReader.getKeys( context );
+	}
+	
+	private static final class ApiKeyReader {
+		private static final String METADATA_API_KEY = "com.aviary.android.feather.v1.API_KEY";
+		protected static String mApiKey;
+		protected static String[] mExtraKeys;
+		protected static final Object mApiKeyLock = new Object();
+		
+		static String[] getKeys( final Context context ) {
+			String s1 = getApiKey( context );
+			String[] s2 = getExtraKeys( context );
+			return new String[]{ s1, s2[0], s2[1] };
+		}
+		
+		static String[] getExtraKeys( Context context ) {
+			if( null == mExtraKeys ) {
+				mExtraKeys = new String[2];
+				try {
+					InputStream stream = context.getAssets().open( "aviary/aviary.txt" );
+					Scanner scanner = new Scanner( stream );
+					String secret = scanner.nextLine();
+					String billing = scanner.nextLine();
+					mExtraKeys[0] = secret;
+					mExtraKeys[1] = billing;
+				} catch ( Exception e ) {
+					e.printStackTrace();
+				}
+			}
+			return mExtraKeys;
+		}
+		
+		static String getApiKey( Context context ) {
+			if ( null == mApiKey ) {
+				synchronized ( mApiKeyLock ) {
+					if ( null == mApiKey ) {
+						mApiKey = readApiKey( context );
+					}
+				}
+			}
+			return mApiKey;
+		}
+
+		private static String readApiKeyFromMetadata( Context context ) {
+			// try to get the api key from the AndroidManifest.xml
+			ApplicationInfo info = PackageManagerUtils.getApplicationInfo( context );
+			Bundle metadata = info.metaData;
+
+			if ( null != metadata ) {
+				if ( metadata.containsKey( METADATA_API_KEY ) ) {
+					return metadata.getString( METADATA_API_KEY );
+				}
+			}
+			return null;
+		}
+
+		/**
+		 * Read the API-KEY from the assets/aviary-credentials.txt file
+		 * 
+		 * @param context
+		 * @return
+		 */
+		private static String readApiKey( Context context ) {
+			// metadata
+			String apiKey = readApiKeyFromMetadata( context );
+			return apiKey;
+		}
+	}
+}

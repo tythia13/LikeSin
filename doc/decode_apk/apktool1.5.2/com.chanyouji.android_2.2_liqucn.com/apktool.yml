@@ -1,0 +1,13 @@
+version: 1.5.2
+apkFileName: com.chanyouji.android_2.2_liqucn.com.apk
+isFrameworkApk: false
+usesFramework:
+  ids:
+  - 1
+sdkInfo:
+  minSdkVersion: '14'
+  targetSdkVersion: '18'
+packageInfo:
+  cur_package: com.chanyouji.android
+  orig_package: com.chanyouji.android
+compressionType: false
